@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+    <style>
+        body { font-family: Arial; background:#f4f4f4; }
+        .container {
+            width: 350px;
+            margin: 100px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px #ccc;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+
+    <script>
+        function validateForm() {
+            let username = document.forms["regForm"]["username"].value.trim();
+            let password = document.forms["regForm"]["password"].value.trim();
+
+            let pattern = /^[a-zA-Z0-9_]{4,20}$/;
+
+            if (!pattern.test(username)) {
+                alert("Username must be 4-20 characters (letters, numbers, underscore only).");
+                return false;
+            }
+
+            if (password.length < 6) {
+                alert("Password must be at least 6 characters.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</head>
+<body>
+
+<div class="container">
+    <h2>Register</h2>
+    <form name="regForm" method="POST" action="../backend/register.php" onsubmit="return validateForm()">
+        <input type="text" name="username" placeholder="Username" required>
+        <input type="password" name="password" placeholder="Password" required>
+        <button type="submit">Register</button>
+    </form>
+</div>
+
+</body>
+</html>
